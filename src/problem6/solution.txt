@@ -1,0 +1,9 @@
+looking at this is an internal service, I would expect there to be some authentication layer so if anyone uses any request interceptor like charles, they will not be able to mock other requests.
+also since this is a broadcaster service, it would be better to use a message queue like kafka.
+using a load balancer is also good to prevent scripting attacks on the api.
+
+the flow of a request will be 
+request -> load balancer -> auth wall -> param validation -> logic handling -> RPC call -> error/success handling -> message queue -> return
+
+on message queue side
+it will consume based on configuration
